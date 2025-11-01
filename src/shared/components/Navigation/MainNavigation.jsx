@@ -4,7 +4,7 @@ import NavLinks from './NavLinks'
 import './MainNavigation.css'
 import SideDrawer from './SideDrawer'
 
-export default function MainNavigation({ }) {
+export default function MainNavigation() {
     return (
         <>
         <SideDrawer>
@@ -19,7 +19,7 @@ export default function MainNavigation({ }) {
                 <span />
             </button>
             <h1 className='main-navigation__title'>
-                <Link to='/' >Share Places</Link>
+                <Link to='/'>Share Places</Link>
             </h1>
             <nav className='main-navigation__header-nav'>
                 <NavLinks />
