@@ -12,22 +12,21 @@ export default function MainNavigation() {
 
     const [drawerIsOpen, setDrawerIsOpen] = useState(false)
 
-    function openDrawer(){  setDrawerIsOpen(true) }
+    function openDrawerHandler(){ setDrawerIsOpen(true) }
 
-    function closeDrawer(){  setDrawerIsOpen(false) }
+    function closeDrawerHandler(){ setDrawerIsOpen(false) }
     
     return (
         <>
-        { drawerIsOpen && <Backdrop onClick={closeDrawer}/>}
-        { drawerIsOpen &&
-            <SideDrawer>
+        { drawerIsOpen && <Backdrop onClick={closeDrawerHandler}/>}
+        <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
                 <nav className='main-navigation__drawer-nav'>
                     <NavLinks />
                 </nav>
-            </SideDrawer>
-        }
+        </SideDrawer>
+
         <MainHeader>
-            <button onClick={openDrawer} 
+            <button onClick={openDrawerHandler} 
                 className='main-navigation__menu-btn'>
                 <span />
                 <span />
