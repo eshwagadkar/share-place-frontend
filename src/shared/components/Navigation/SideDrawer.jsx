@@ -1,5 +1,9 @@
+import { createPortal } from 'react-dom'
 import './SideDrawer.css'
 
 export default function SideDrawer({ children }) {
-    return <aside className='side-drawer'>{children}</aside>
+    return createPortal(
+        <aside className='side-drawer'>{children}</aside>,
+        document.getElementById('drawer-hook')
+    )
 }
