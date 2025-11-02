@@ -1,7 +1,8 @@
 import Card from '../../shared/components/UI/Card'
+import Button from '../../shared/components/FormElements/Button'
 import './PlaceItem.css'
 
-export default function PlaceItem({ image, title, address, description }) {
+export default function PlaceItem({ id, image, title, address, description }) {
     return (
     <li className='place-item'>
         <Card>
@@ -14,9 +15,9 @@ export default function PlaceItem({ image, title, address, description }) {
                 <p>{description}</p>
             </div>
             <div className='place-item__actions'>
-                <button>VIEW ON MAP</button>
-                <button>EDIT</button>
-                <button>DELETE</button>
+                <Button inverse>VIEW ON MAP</Button>
+                <Button to={id}>EDIT</Button>
+                <Button danger>DELETE</Button>
             </div>
         </Card>
     </li>
