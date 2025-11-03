@@ -2,10 +2,11 @@ import { useState } from 'react'
 import Card from '../../shared/components/UI/Card'
 import Button from '../../shared/components/FormElements/Button'
 import Modal from '../../shared/components/UI/Modal'
+import Map from '../../shared/components/UI/Map'
 
 import './PlaceItem.css'
 
-export default function PlaceItem({ id, image, title, address, description }) {
+export default function PlaceItem({ id, image, title, address, description, coordinates }) {
 
     const [showMap, setShowMap] = useState(false)
 
@@ -22,7 +23,7 @@ export default function PlaceItem({ id, image, title, address, description }) {
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
         <div className="map-container">
-            <h2>The Map</h2>
+            <Map center={coordinates} zoom={16} />
         </div>
       </Modal>
 
