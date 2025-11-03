@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { loadGoogleMaps } from '../../../utils/loadGoogleMaps'
+import { loadGoogleMaps } from '../../../shared/utils/loadGoogleMaps'
 import './Map.css'
 
 export default function Map({className, style, center, zoom}) {

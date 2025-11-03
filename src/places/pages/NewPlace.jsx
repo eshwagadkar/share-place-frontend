@@ -1,4 +1,5 @@
 import Input from '../../shared/components/FormElements/Input'
+import { VALIDATOR_REQUIRE } from '../../shared/utils/validators'
 import './NewPlace.css'
 
 export default function NewPlace() {
@@ -6,7 +7,7 @@ export default function NewPlace() {
         <Input element='input'
                type='text'
                label='Title'
-               validators={[]}
+               validators={[VALIDATOR_REQUIRE()]}
                errorText='Please enter a valid title' />
     </form>
     
