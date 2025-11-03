@@ -1,7 +1,9 @@
+import Input from '../../shared/components/FormElements/Input'
+import './NewPlace.css'
+
 export default function NewPlace() {
-    return (
-        <>
-            <h2>Place works!</h2>
-        </>
-    )
+    return <form className='place-form'>
+        <Input element='input' type='text' label='Title' />
+    </form>
+    
 }
