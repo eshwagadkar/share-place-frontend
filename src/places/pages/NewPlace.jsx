@@ -55,13 +55,19 @@ export default function NewPlace() {
         dispatch({ type: 'INPUT_CHANGE', value, isValid, id })
     }, []) 
 
-    return <form className='place-form'>
+    const placeSubmitHandler = event => {
+        event.preventDefault()
+
+    }
+
+    return <form className='place-form' onSubmit={placeSubmitHandler}>
+        
         <Input id='title'
             element='input'
             type='text'
             label='Title'
             validators={[VALIDATOR_REQUIRE()]}
-            errorText='Please enter a valid title' 
+            errorText='Please enter a valid title.' 
             onInput={inputHandler}
         />
 
@@ -70,6 +76,14 @@ export default function NewPlace() {
             label='Description' 
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText='Please enter a valid description (atleast 5 characters).' 
+            onInput={inputHandler}
+        />
+
+        <Input id='address'
+            element='input'
+            label='Address' 
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText='Please enter a valid address.' 
             onInput={inputHandler}
         />
 
