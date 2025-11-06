@@ -11,8 +11,8 @@ function App() {
     { path: '/', element: <RootLayout />,
       children: [
         { index: true, element: <Users /> },
-        { path: ':uid/places', element: <UserPlaces /> },
         { path: 'places/new', element: <NewPlace /> },
+        { path: ':uid/places', element: <UserPlaces /> },
         { path: 'places/:placeId', element: <UpdatePlace /> }
       ] 
     },
