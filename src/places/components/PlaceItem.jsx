@@ -39,7 +39,7 @@ export default function PlaceItem({ id, image, title, address, description, coor
             </div>
            <div className='place-item__actions'>
                 <Button inverse onClick={viewMapHandler}>VIEW ON MAP</Button>
-                <Button to={id}>EDIT</Button>
+                <Button to={`/places/${id}`}>EDIT</Button>
                 <Button danger>DELETE</Button>
            </div>
         </Card>

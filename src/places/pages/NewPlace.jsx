@@ -1,8 +1,8 @@
 import { useCallback, useReducer } from 'react'
 import Input from '../../shared/components/FormElements/Input'
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/utils/validators'
-import './NewPlace.css'
 import Button from '../../shared/components/FormElements/Button'
+import './PlaceForm.css'
 
 const formReducer = (state, action) => {
 
@@ -46,7 +46,11 @@ export default function NewPlace() {
             description: {
                 value: '',
                 isValid: false
-            }
+            }, 
+            address: {
+                value: '',
+                isValid: false
+            }, 
         },
         isValid: false
     })
@@ -57,7 +61,6 @@ export default function NewPlace() {
 
     const placeSubmitHandler = event => {
         event.preventDefault()
-
     }
 
     return <form className='place-form' onSubmit={placeSubmitHandler}>

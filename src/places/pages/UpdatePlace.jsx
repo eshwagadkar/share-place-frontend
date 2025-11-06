@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import Input from '../../shared/components/FormElements/Input'
 import Button from '../../shared/components/FormElements/Button'
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/utils/validators'
+import './PlaceForm.css'
 
 const DUMMY_PLACES = [
   {
@@ -35,12 +36,16 @@ export default function UpdatePlace() {
     const placeID = useParams().placeId
 
     const identifiedPlace = DUMMY_PLACES.find(place => place.id === placeID)
-
+    
     if(!identifiedPlace) {
         return <div className='center'><h2>Could not find place!</h2></div>
     }
 
-    return <form>
+    const placeSubmitHandler = event => {
+        event.preventDefault()
+    }
+
+    return <form className='place-form' onSubmit={placeSubmitHandler}>
         
         <Input 
             id='title'
@@ -50,8 +55,8 @@ export default function UpdatePlace() {
             validators={[VALIDATOR_REQUIRE()]}
             errorText='Please enter a valid title'
             onInput={() => {}}
-            value={identifiedPlace.title}
-            valid={true}
+            inputValue={identifiedPlace.title}
+            inputIsValid={true}
         />
 
         <Input 
@@ -61,10 +66,10 @@ export default function UpdatePlace() {
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText='Please enter a valid description (min. 5 characters).'
             onInput={() => {}}
-            value={identifiedPlace.description}
-            valid={true}
+            inputValue={identifiedPlace.description}
+            inputIsValid={true}
         />
 
-        <Button type={submit} disabled={true}>UPDATE PLACE</Button>
+        <Button type='submit' disabled={true}>UPDATE PLACE</Button>
     </form>
 }

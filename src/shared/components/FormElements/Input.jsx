@@ -34,13 +34,15 @@ export default function Input({
                     rows,
                     errorText, 
                     validators, 
-                    onInput 
+                    onInput, 
+                    inputValue,
+                    inputIsValid
                 }) {
 
     const [inputState, dispatch] = useReducer(inputReducer, { 
-        value: '', 
+        value : inputValue || '', 
         isTouched: false,
-        isValid: false
+        isValid: inputIsValid || false
     })
 
     const { value, isValid } = inputState
