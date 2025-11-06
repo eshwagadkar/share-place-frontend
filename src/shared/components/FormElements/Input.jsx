@@ -1,11 +1,10 @@
-import { useReducer } from 'react'
+import { useReducer, useEffect } from 'react'
 import { validate } from '../../utils/validators'
 import './Input.css'
 
 const inputReducer = (state, action) => {
 
     switch (action.type) {
-    
         case 'CHANGE': {
             return {
                 ...state,
@@ -20,22 +19,35 @@ const inputReducer = (state, action) => {
                 isTouched: true  
             }
         } 
-        
+
         default:
             return state
     }
-
-
 }
 
-export default function Input({ element, id, label, type, placeholder, rows, errorText, validators }) {
-
+export default function Input({ 
+                    element, 
+                    id,
+                    label, 
+                    type,
+                    placeholder,
+                    rows,
+                    errorText, 
+                    validators, 
+                    onInput 
+                }) {
 
     const [inputState, dispatch] = useReducer(inputReducer, { 
         value: '', 
         isTouched: false,
         isValid: false
     })
+
+    const { value, isValid } = inputState
+
+    useEffect(() => {
+        onInput(id, value, isValid)
+    }, [id, value, isValid, onInput])
 
     function changeHandler (event) {
         dispatch({ type: 'CHANGE', payload: event.target.value, validators })
@@ -52,7 +64,6 @@ export default function Input({ element, id, label, type, placeholder, rows, err
            onChange={changeHandler} 
            onBlur={touchHandler}
            value={inputState.value}
-
     /> :
     <textarea id={id} 
               rows={rows || 3} 
