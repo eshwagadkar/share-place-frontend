@@ -34,9 +34,9 @@ export default function Input({
                     rows,
                     errorText, 
                     validators, 
-                    onInput, 
                     initialValue,
-                    initialIsValid
+                    initialIsValid,
+                    onInput, 
                 }) {
 
     const [inputState, dispatch] = useReducer(inputReducer, { 

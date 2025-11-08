@@ -4,6 +4,7 @@ import Users from './user/pages/Users'
 import NewPlace from './places/pages/NewPlace'
 import UserPlaces from './places/pages/UserPlaces'
 import UpdatePlace from './places/pages/UpdatePlace'
+import Auth from './user/pages/Auth'
 
 function App() {
 
@@ -13,7 +14,9 @@ function App() {
         { index: true, element: <Users /> },
         { path: 'places/new', element: <NewPlace /> },
         { path: ':uid/places', element: <UserPlaces /> },
-        { path: 'places/:placeId', element: <UpdatePlace /> }
+        { path: 'places/:placeId', element: <UpdatePlace /> }, 
+        { path: 'auth', element: <Auth />
+        }
       ] 
     },
   ])
