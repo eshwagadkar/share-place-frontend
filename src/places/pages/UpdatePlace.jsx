@@ -4,6 +4,8 @@ import Input from '../../shared/components/FormElements/Input'
 import Button from '../../shared/components/FormElements/Button'
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/utils/validators'
 import { useForm } from '../../shared/hooks/form-hooks'
+import Card from '../../shared/components/UI/Card'
+
 import './PlaceForm.css'
 
 const DUMMY_PLACES = [
@@ -51,16 +53,20 @@ export default function UpdatePlace() {
     const identifiedPlace = DUMMY_PLACES.find(place => place.id === placeID)
 
     useEffect(() => {
-      setFormData({
-        title: {
-          value: identifiedPlace.title,
-          isValid: true
-        },
-        description: {
-          value: identifiedPlace.description,
-          isValid: true
-        }
-      }, true)
+
+      if(identifiedPlace){
+        setFormData({
+          title: {
+            value: identifiedPlace.title,
+            isValid: true
+          },
+          description: {
+            value: identifiedPlace.description,
+            isValid: true
+          }
+        }, true)
+      }
+
     }, [setFormData, identifiedPlace])
 
     const placeUpdateSubmitHandler = event => {
@@ -68,7 +74,7 @@ export default function UpdatePlace() {
     }
 
     if(!identifiedPlace) {
-      return <div className='center'><h2>Could not find place!</h2></div>
+      return <div className='center'><Card><h2>Could not find place!</h2></Card></div>
     }
 
     if(!formState.inputs.title.value){

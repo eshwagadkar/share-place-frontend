@@ -1,6 +1,7 @@
 import './PlaceList.css'
 import Card from '../../shared/components/UI/Card'
 import PlaceItem from './PlaceItem'
+import Button from '../../shared/components/FormElements/Button'
 
 export default function PlaceList({ items }) {
 
@@ -8,7 +9,7 @@ export default function PlaceList({ items }) {
         return <div className='center place-list'>
             <Card>
                 <h2>No places found, May be create one?</h2>
-                <button>Share Place</button>
+                <Button to='/places/new'>Share Place</Button>
             </Card>
         </div>
     }
