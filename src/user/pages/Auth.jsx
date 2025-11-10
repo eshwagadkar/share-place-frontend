@@ -1,13 +1,18 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import Card from '../../shared/components/UI/Card'
 import Input from '../../shared/components/FormElements/Input'
 import Button from '../../shared/components/FormElements/Button'
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/utils/validators'
 import { useForm } from '../../shared/hooks/form-hooks'
+import { authActions } from '../../store/auth-slice'
 
 import './Auth.css'
 
 export default function Auth() {
+    const dispatch = useDispatch()
+
     const [isLoginMode, setIsLoginMode] = useState(false)
     const [inputHandler, formState, setFormData] = useForm({
                                             email: {
@@ -23,6 +28,8 @@ export default function Auth() {
     const authSubmitHandler = event => {
       event.preventDefault()
       console.log(formState.inputs)
+
+      dispatch(authActions.login(true))
     }
 
     const switchModeHandler = () => {
