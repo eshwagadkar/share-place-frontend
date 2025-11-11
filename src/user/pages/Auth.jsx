@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import Card from '../../shared/components/UI/Card'
 import Input from '../../shared/components/FormElements/Input'
@@ -12,6 +13,14 @@ import './Auth.css'
 
 export default function Auth() {
     const dispatch = useDispatch()
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+       if (isLoggedIn) {
+        navigate('/', { replace: true })   // redirect to home
+      }
+    }, [isLoggedIn, navigate])
 
     const [isLoginMode, setIsLoginMode] = useState(false)
     const [inputHandler, formState, setFormData] = useForm({
