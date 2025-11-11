@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import Card from '../../shared/components/UI/Card'
 import Button from '../../shared/components/FormElements/Button'
 import Modal from '../../shared/components/UI/Modal'
@@ -10,6 +11,7 @@ export default function PlaceItem({ id, image, title, address, description, coor
 
     const [showMap, setShowMap] = useState(false)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
 
     const viewMapHandler = () => { setShowMap(true) }
     const closeMapHandler = () => { setShowMap(false) }
@@ -64,8 +66,8 @@ export default function PlaceItem({ id, image, title, address, description, coor
             </div>
            <div className='place-item__actions'>
                 <Button inverse onClick={viewMapHandler}>VIEW ON MAP</Button>
-                <Button to={`/places/${id}`}>EDIT</Button>
-                <Button onClick={showDeleteWarningHandler} danger>DELETE</Button>
+                {isLoggedIn && <Button to={`/places/${id}`}>EDIT</Button>}
+                {isLoggedIn && <Button onClick={showDeleteWarningHandler} danger>DELETE</Button>}
            </div>
         </Card>
       </li>

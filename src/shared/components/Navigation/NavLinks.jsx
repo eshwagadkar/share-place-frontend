@@ -1,11 +1,25 @@
-import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { authActions } from '../../../store/auth-slice'
 import './NavLinks.css'
 
 export default function NavLinks() {
 
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
-    console.log(isLoggedIn)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+       if (!isLoggedIn) {
+            navigate('/auth', { replace: true })   // redirect to home
+          }
+    }, [isLoggedIn, navigate])
+    
+
+    function logoutHandler() {
+        dispatch(authActions.logout())
+    }
     
     return <ul className='nav-links'>
         <li>
@@ -23,5 +37,8 @@ export default function NavLinks() {
             <NavLink to='auth'>AUTHENTICATE</NavLink>
         </li>
         }   
+        {
+            isLoggedIn && <button onClick={logoutHandler}>LOGOUT</button>
+        }
     </ul>
 }

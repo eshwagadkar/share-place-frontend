@@ -15,7 +15,7 @@ export default function Auth() {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
     const navigate = useNavigate()
-
+    
     useEffect(() => {
        if (isLoggedIn) {
         navigate('/', { replace: true })   // redirect to home
@@ -36,7 +36,6 @@ export default function Auth() {
 
     const authSubmitHandler = event => {
       event.preventDefault()
-      console.log(formState.inputs)
 
       dispatch(authActions.login(true))
     }
