@@ -52,6 +52,6 @@ export default function useHttpClient() {
         }
     },[])
 
-    return { isLoading, error, sendRequest, clearError}
+    return {isLoading, error, sendRequest, clearError}
 
 }
