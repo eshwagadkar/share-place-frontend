@@ -121,7 +121,7 @@ export default function Auth() {
     const errorHandler = () => setError(null)
 
    return <>
-    { error && <ErrorModal onClear={errorHandler} error={error}/>} 
+    <ErrorModal onClear={errorHandler} error={error}/> 
     <Card className="authentication">
       {isLoading && <LoadingSpinner asOverlay /> }
       <h2>Login Required</h2>
