@@ -18,7 +18,11 @@ export default function NavLinks() {
     
 
     function logoutHandler() {
-        dispatch(authActions.logout())
+        dispatch(authActions.logout({
+            userId: null,
+            isLoggedIn: false
+        }
+     ))
     }
     
     return <ul className='nav-links'>
