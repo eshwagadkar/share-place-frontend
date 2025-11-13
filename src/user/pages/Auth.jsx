@@ -22,7 +22,7 @@ export default function Auth() {
     
     useEffect(() => {
        if (isLoggedIn) {
-        navigate('/', { replace: true })   // redirect to home
+        navigate('/', { replace: false })   // redirect to home
       }
     }, [isLoggedIn, navigate])
 
@@ -42,8 +42,8 @@ export default function Auth() {
 
       if(isLoginMode) {
         try{
-          await sendRequest(
-            'http://localhost:4001/api/v1/users/signin', 
+          const responseData = await sendRequest(
+            'http://localhost:4003/api/v1/users/signin', 
             'POST',
             JSON.stringify({
                 email: formState.inputs.email.value,
@@ -51,13 +51,16 @@ export default function Auth() {
             }), 
             { 'Content-Type': 'application/json' })
 
-            dispatch(authActions.login())
+            dispatch(authActions.login({
+              userId: responseData.user.id,
+              isLoggedIn: true
+            }))
         } catch(error) { console.log(error)}
 
       } else {
         try {
-          await sendRequest(
-            'http://localhost:4001/api/v1/users/signup',
+          const responseData = await sendRequest(
+            'http://localhost:4003/api/v1/users/signup',
             'POST',
              JSON.stringify({
                 name: formState.inputs.name.value,
@@ -66,7 +69,13 @@ export default function Auth() {
               }),
              { 'Content-Type': 'application/json' })
 
-             dispatch(authActions.login())
+             console.log(responseData.user.id)
+             
+             dispatch(authActions.login({
+              userId: responseData.user.id,
+              isLoggedIn: true
+              }
+             ))
         } catch(error) { console.log(error) }
       }
     }
