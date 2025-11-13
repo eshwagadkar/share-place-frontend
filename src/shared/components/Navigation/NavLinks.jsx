@@ -5,7 +5,7 @@ import { authActions } from '../../../store/auth-slice'
 import './NavLinks.css'
 
 export default function NavLinks() {
-
+    const userId = useSelector(state => state.auth.userId)
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -30,7 +30,7 @@ export default function NavLinks() {
             <NavLink to='/' end>ALL USERS</NavLink>
         </li>
         { isLoggedIn && <li>
-            <NavLink to='u1/places'>MY PLACES</NavLink>
+            <NavLink to={`${userId}/places`}>MY PLACES</NavLink>
         </li>
         }
         { isLoggedIn && <li>
