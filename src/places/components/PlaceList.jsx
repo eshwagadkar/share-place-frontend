@@ -3,7 +3,7 @@ import Card from '../../shared/components/UI/Card'
 import PlaceItem from './PlaceItem'
 import Button from '../../shared/components/FormElements/Button'
 
-export default function PlaceList({ items }) {
+export default function PlaceList({ items, onDeletePlace }) {
 
     if(items.length === 0) {
         return <div className='center place-list'>
@@ -26,6 +26,7 @@ export default function PlaceList({ items }) {
                     address={place.address}
                     creatorId={place.creator}
                     coordinates={place.location}
+                    onDelete={onDeletePlace}
                 />
             ))}
         </ul>

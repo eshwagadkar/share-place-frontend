@@ -26,9 +26,13 @@ export default function UserPlaces() {
 
      },[sendRequest, userId])
 
+     const placeDeleteHandler = (deletedPlaceId) => {
+      setLoadedPlaces(prevPlaces => prevPlaces.filter(place => place.id !== deletedPlaceId))
+     }
+
     return <>
       <ErrorModal onClear={clearError} error={error}/>
       {isLoading && <div className="center"><LoadingSpinner /></div>}
-      {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces}/>}
+      {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} onDeletePlace={placeDeleteHandler}/>}
     </>
 }
