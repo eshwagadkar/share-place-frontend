@@ -10,12 +10,13 @@ import './PlaceItem.css'
 import ErrorModal from '../../shared/components/UI/ErrorModal'
 import LoadingSpinner from '../../shared/components/UI/LoadingSpinner'
 
-export default function PlaceItem({ id, image, title, address, description, coordinates, onDelete }) {
+export default function PlaceItem({ id, image, title, description, address, creatorId, coordinates, onDelete }) {
 
     const [showMap, setShowMap] = useState(false)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const {isLoading, error, sendRequest, clearError} = useHttpClient()
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+    const userId = useSelector(state => state.auth.userId)
 
     const viewMapHandler = () => { setShowMap(true) }
     const closeMapHandler = () => { setShowMap(false) }
@@ -75,8 +76,8 @@ export default function PlaceItem({ id, image, title, address, description, coor
             </div>
            <div className='place-item__actions'>
                 <Button inverse onClick={viewMapHandler}>VIEW ON MAP</Button>
-                {isLoggedIn && <Button to={`/places/${id}`}>EDIT</Button>}
-                {isLoggedIn && <Button onClick={showDeleteWarningHandler} danger>DELETE</Button>}
+                {isLoggedIn && (userId === creatorId) && <Button to={`/places/${id}`}>EDIT</Button>}
+                {isLoggedIn && (userId === creatorId) && <Button onClick={showDeleteWarningHandler} danger>DELETE</Button>}
            </div>
         </Card>
       </li>
