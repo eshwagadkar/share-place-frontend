@@ -62,23 +62,23 @@ export default function Auth() {
 
       } else {
         try {
+          const formData = new FormData()
+          formData.append('name', formState.inputs.name.value)
+          formData.append('email', formState.inputs.email.value)
+          formData.append('password', formState.inputs.password.value)
+          formData.append('image', formState.inputs.image.value)
+
           const responseData = await sendRequest(
             'http://localhost:4003/api/v1/users/signup',
             'POST',
-             JSON.stringify({
-                name: formState.inputs.name.value,
-                email: formState.inputs.email.value,
-                password: formState.inputs.password.value, 
-              }),
-             { 'Content-Type': 'application/json' })
+             formData,
+          )
+   
+          dispatch(authActions.login({
+           userId: responseData.user.id,
+           isLoggedIn: true
+          }))
 
-             console.log(responseData.user.id)
-             
-             dispatch(authActions.login({
-              userId: responseData.user.id,
-              isLoggedIn: true
-              }
-             ))
         } catch(error) { console.log(error) }
       }
     }
