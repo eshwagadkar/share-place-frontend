@@ -14,6 +14,7 @@ import useHttpClient from '../../shared/hooks/http-hooks'
 import { authActions } from '../../store/auth-slice'
 
 import './Auth.css'
+import ImageUpload from '../../shared/components/FormElements/ImageUpload'
 
 export default function Auth() {
     const dispatch = useDispatch()
@@ -36,6 +37,8 @@ export default function Auth() {
             { email: { value: '',isValid: false },
               password: { value: '', isValid: false }
             }, false)
+
+    console.log(formState)
 
     const authSubmitHandler = async event => {
       event.preventDefault()
@@ -84,7 +87,8 @@ export default function Auth() {
         if(!isLoginMode) {
             setFormData({
                 ...formState.inputs,
-                name: undefined
+                name: undefined,
+                image: undefined,
             }, formState.inputs.email.isValid && formState.inputs.password.isValid)
         } else {
             setFormData({
@@ -92,6 +96,10 @@ export default function Auth() {
                 name: {
                     value: '',
                     isValid: false
+                },
+                image: {
+                  value: null,
+                  isValid: false
                 }
             }, false)
         }
@@ -119,6 +127,8 @@ export default function Auth() {
            />
          }
 
+        { !isLoginMode && <ImageUpload id='image' center onInput={inputHandler} errorText='Something went wrong!' />}
+          
         <Input
           element="input"
           id="email"
