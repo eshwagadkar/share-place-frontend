@@ -67,7 +67,7 @@ export default function PlaceItem({ id, image, title, description, address, crea
         <Card>
             { isLoading && <LoadingSpinner asOverlay />}
             <div className='place-item__image'>
-                <img src={image} alt={title} />
+                <img src={`http://localhost:4004/${image}`} alt={title} />
             </div>
             <div className='place-item__info'>
                 <h2>{title}</h2>

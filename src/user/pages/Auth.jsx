@@ -125,7 +125,7 @@ export default function Auth() {
            />
          }
 
-        { !isLoginMode && <ImageUpload id='image' center onInput={inputHandler} errorText='Something went wrong!' />}
+        { !isLoginMode && <ImageUpload id='image' center onInput={inputHandler} errorText='Please provide an image!' />}
           
         <Input
           element="input"
