@@ -6,6 +6,7 @@ import LoadingSpinner from '../../shared/components/UI/LoadingSpinner'
 import useHttpClient from '../../shared/hooks/http-hooks'
 
 export default function UserPlaces() {
+      const backendURL = import.meta.env.VITE_BACKEND_URL
       const [loadedPlaces, setLoadedPlaces] = useState()
       const {isLoading, error, sendRequest, clearError} = useHttpClient()
 
@@ -16,7 +17,7 @@ export default function UserPlaces() {
         async function fetchPlaces() {
             try {
               const responseData = await sendRequest(
-                `http://localhost:4004/api/v1/places/user/${userId}`)
+                `${backendURL}places/user/${userId}`)
               setLoadedPlaces(responseData.places)  
             } catch(error) {}
 

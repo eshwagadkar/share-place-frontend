@@ -12,6 +12,7 @@ import ImageUpload from '../../shared/components/FormElements/ImageUpload'
 import './PlaceForm.css'
 
 export default function NewPlace() {
+    const backendURL = import.meta.env.VITE_BACKEND_URL
     const navigate = useNavigate()
     const userId = useSelector(state => state.auth.userId)
     const { isLoading, error, sendRequest, clearError } = useHttpClient()
@@ -37,7 +38,6 @@ export default function NewPlace() {
 
     const placeSubmitHandler = async event => {
         event.preventDefault()
-
         
         try{
             const formData = new FormData()
@@ -48,7 +48,7 @@ export default function NewPlace() {
             formData.append('image', formState.inputs.image.value)
 
             await sendRequest(
-                'http://localhost:4004/api/v1/places',
+                `${backendURL}places`,
                 'POST',
                  formData)   
             navigate('/', { replace: false })

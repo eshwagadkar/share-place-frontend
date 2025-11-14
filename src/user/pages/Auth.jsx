@@ -17,6 +17,7 @@ import './Auth.css'
 import ImageUpload from '../../shared/components/FormElements/ImageUpload'
 
 export default function Auth() {
+    const backendURL = import.meta.env.VITE_BACKEND_URL
     const dispatch = useDispatch()
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
     const navigate = useNavigate()
@@ -44,7 +45,7 @@ export default function Auth() {
       if(isLoginMode) {
         try{
           const responseData = await sendRequest(
-            'http://localhost:4004/api/v1/users/signin', 
+            `${backendURL}users/signin`, 
             'POST',
             JSON.stringify({
                 email: formState.inputs.email.value,
@@ -67,7 +68,7 @@ export default function Auth() {
           formData.append('image', formState.inputs.image.value)
 
           const responseData = await sendRequest(
-            'http://localhost:4004/api/v1/users/signup',
+            `${backendURL}users/signup`,
             'POST',
              formData,
           )

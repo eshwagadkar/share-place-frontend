@@ -5,14 +5,14 @@ import UsersList from '../components/UsersList'
 import useHttpClient from '../../shared/hooks/http-hooks'
 
 export default function Users() {
-
+    const backendURL = import.meta.env.VITE_BACKEND_URL
     const {isLoading, error, sendRequest, clearError } = useHttpClient()
     const [loadedUsers, setLoadedUsers] = useState()
 
     useEffect(() => {
         async function fetchUsers() {
             try{
-                const responseData = await sendRequest('http://localhost:4004/api/v1/users')
+                const responseData = await sendRequest(`${backendURL}users`)
                 setLoadedUsers(responseData.users)
             } catch(error) { }
         }

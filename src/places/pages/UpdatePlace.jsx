@@ -13,6 +13,7 @@ import ErrorModal from '../../shared/components/UI/ErrorModal'
 import { useNavigate } from 'react-router-dom'
 
 export default function UpdatePlace() {
+    const backendURL = import.meta.env.VITE_BACKEND_URL
     const [loadedPlace, setLoadedPlace] = useState()
     const {isLoading, error, sendRequest, clearError} = useHttpClient()
     const navigate = useNavigate()
@@ -35,7 +36,7 @@ export default function UpdatePlace() {
         async function fetchPlace() {
             try {
               const responseData = await sendRequest(
-                `http://localhost:4004/api/v1/places/${placeID}`)
+                `${backendURL}places/${placeID}`)
               setLoadedPlace(responseData.place)  
                 setFormData({
                   title: {
@@ -59,7 +60,7 @@ export default function UpdatePlace() {
         event.preventDefault()
 
         try{
-          await sendRequest(`http://localhost:4004/api/v1/places/${placeID}`, 
+          await sendRequest(`${backendURL}places/${placeID}`, 
                             'PATCH',
                             JSON.stringify({
                               title: formState.inputs.title.value,

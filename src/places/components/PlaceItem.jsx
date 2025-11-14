@@ -11,7 +11,8 @@ import ErrorModal from '../../shared/components/UI/ErrorModal'
 import LoadingSpinner from '../../shared/components/UI/LoadingSpinner'
 
 export default function PlaceItem({ id, image, title, description, address, creatorId, coordinates, onDelete }) {
-
+    const backendURL = import.meta.env.VITE_BACKEND_URL
+    const imageBackendURL = import.meta.env.VITE_IMAGE_BACKEND_URL
     const [showMap, setShowMap] = useState(false)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const {isLoading, error, sendRequest, clearError} = useHttpClient()
@@ -32,7 +33,7 @@ export default function PlaceItem({ id, image, title, description, address, crea
     const confirmDeleteHandler = async () => {
       setShowConfirmModal(false)
       try{
-        await sendRequest(`http://localhost:4004/api/v1/places/${id}`, 'DELETE')
+        await sendRequest(`${backendURL}places/${id}`, 'DELETE')
         onDelete(id)
       } catch(error) {}
     }
@@ -67,7 +68,7 @@ export default function PlaceItem({ id, image, title, description, address, crea
         <Card>
             { isLoading && <LoadingSpinner asOverlay />}
             <div className='place-item__image'>
-                <img src={`http://localhost:4004/${image}`} alt={title} />
+                <img src={`${imageBackendURL}${image}`} alt={title} />
             </div>
             <div className='place-item__info'>
                 <h2>{title}</h2>
