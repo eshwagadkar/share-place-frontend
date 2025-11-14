@@ -38,15 +38,13 @@ export default function Auth() {
               password: { value: '', isValid: false }
             }, false)
 
-    console.log(formState)
-
     const authSubmitHandler = async event => {
       event.preventDefault()
 
       if(isLoginMode) {
         try{
           const responseData = await sendRequest(
-            'http://localhost:4003/api/v1/users/signin', 
+            'http://localhost:4004/api/v1/users/signin', 
             'POST',
             JSON.stringify({
                 email: formState.inputs.email.value,
@@ -69,7 +67,7 @@ export default function Auth() {
           formData.append('image', formState.inputs.image.value)
 
           const responseData = await sendRequest(
-            'http://localhost:4003/api/v1/users/signup',
+            'http://localhost:4004/api/v1/users/signup',
             'POST',
              formData,
           )

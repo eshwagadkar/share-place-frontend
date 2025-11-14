@@ -32,7 +32,7 @@ export default function PlaceItem({ id, image, title, description, address, crea
     const confirmDeleteHandler = async () => {
       setShowConfirmModal(false)
       try{
-        await sendRequest(`http://localhost:4003/api/v1/places/${id}`, 'DELETE')
+        await sendRequest(`http://localhost:4004/api/v1/places/${id}`, 'DELETE')
         onDelete(id)
       } catch(error) {}
     }

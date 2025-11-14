@@ -35,7 +35,7 @@ export default function UpdatePlace() {
         async function fetchPlace() {
             try {
               const responseData = await sendRequest(
-                `http://localhost:4003/api/v1/places/${placeID}`)
+                `http://localhost:4004/api/v1/places/${placeID}`)
               setLoadedPlace(responseData.place)  
                 setFormData({
                   title: {
@@ -59,7 +59,7 @@ export default function UpdatePlace() {
         event.preventDefault()
 
         try{
-          await sendRequest(`http://localhost:4003/api/v1/places/${placeID}`, 
+          await sendRequest(`http://localhost:4004/api/v1/places/${placeID}`, 
                             'PATCH',
                             JSON.stringify({
                               title: formState.inputs.title.value,

@@ -12,7 +12,7 @@ export default function Users() {
     useEffect(() => {
         async function fetchUsers() {
             try{
-                const responseData = await sendRequest('http://localhost:4003/api/v1/users')
+                const responseData = await sendRequest('http://localhost:4004/api/v1/users')
                 setLoadedUsers(responseData.users)
             } catch(error) { }
         }

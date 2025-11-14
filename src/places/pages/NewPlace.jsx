@@ -35,7 +35,7 @@ export default function NewPlace() {
 
         try{
           await sendRequest(
-              'http://localhost:4003/api/v1/places',
+              'http://localhost:4004/api/v1/places',
               'POST',
               JSON.stringify({
                   title: formState.inputs.title.value,
