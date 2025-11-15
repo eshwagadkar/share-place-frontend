@@ -12,7 +12,7 @@ import LoadingSpinner from '../../shared/components/UI/LoadingSpinner'
 
 export default function PlaceItem({ id, image, title, description, address, creatorId, coordinates, onDelete }) {
     const backendURL = import.meta.env.VITE_BACKEND_URL
-    const imageBackendURL = import.meta.env.VITE_IMAGE_BACKEND_URL
+    const assetURL = import.meta.env.VITE_ASSET_URL
     const [showMap, setShowMap] = useState(false)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const {isLoading, error, sendRequest, clearError} = useHttpClient()
@@ -68,7 +68,7 @@ export default function PlaceItem({ id, image, title, description, address, crea
         <Card>
             { isLoading && <LoadingSpinner asOverlay />}
             <div className='place-item__image'>
-                <img src={`${imageBackendURL}${image}`} alt={title} />
+                <img src={`${assetURL}${image}`} alt={title} />
             </div>
             <div className='place-item__info'>
                 <h2>{title}</h2>
