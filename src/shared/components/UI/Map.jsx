@@ -6,7 +6,7 @@ export default function Map({className, style, center, zoom}) {
     
     const mapRef = useRef()
 
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+    const apiKey = import.meta.env.VITE_GOOGLE_API_KEY
 
     useEffect(() => {
         loadGoogleMaps(apiKey)
