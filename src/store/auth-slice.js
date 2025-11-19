@@ -4,16 +4,21 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: { 
         isLoggedIn: false,
-        userId: null    
+        userId: null, 
+        token: null  
     },
     reducers: {
         login(state, action){
-            state.isLoggedIn = action.payload?.isLoggedIn ?? true
+            state.token = action.payload?.token || null
             state.userId = action.payload?.userId ?? null
+
+             // set isLoggedIn TRUE only if token exists
+            state.isLoggedIn = !!state.token
         },
         logout(state, action){
-            state.isLoggedIn = action.payload?.isLoggedIn ?? false
-            state.userId = action.payload?.userId ?? null
+            state.token = null
+            state.userId = null
+            state.isLoggedIn = false
         }
     }
 })

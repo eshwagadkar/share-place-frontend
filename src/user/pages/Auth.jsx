@@ -54,8 +54,8 @@ export default function Auth() {
             { 'Content-Type': 'application/json' })
 
             dispatch(authActions.login({
-              userId: responseData.user.id,
-              isLoggedIn: true
+              userId: responseData.userId,
+              token: responseData.token
             }))
         } catch(error) { console.log(error)}
 
@@ -74,8 +74,8 @@ export default function Auth() {
           )
    
           dispatch(authActions.login({
-           userId: responseData.user.id,
-           isLoggedIn: true
+           userId: responseData.userId,
+           token: responseData.token
           }))
 
         } catch(error) { console.log(error) }
