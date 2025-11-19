@@ -17,7 +17,10 @@ export default function PlaceItem({ id, image, title, description, address, crea
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const {isLoading, error, sendRequest, clearError} = useHttpClient()
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+        
+    // Extract values from redux store
     const userId = useSelector(state => state.auth.userId)
+    const token = useSelector(state => state.auth.token)
 
     const viewMapHandler = () => { setShowMap(true) }
     const closeMapHandler = () => { setShowMap(false) }
@@ -33,7 +36,11 @@ export default function PlaceItem({ id, image, title, description, address, crea
     const confirmDeleteHandler = async () => {
       setShowConfirmModal(false)
       try{
-        await sendRequest(`${backendURL}places/${id}`, 'DELETE')
+        await sendRequest(
+          `${backendURL}places/${id}`, 
+          'DELETE', 
+           null,
+          { 'Authorization': 'Bearer '+token } )
         onDelete(id)
       } catch(error) {}
     }

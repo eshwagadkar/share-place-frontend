@@ -17,7 +17,11 @@ export default function UpdatePlace() {
     const [loadedPlace, setLoadedPlace] = useState()
     const {isLoading, error, sendRequest, clearError} = useHttpClient()
     const navigate = useNavigate()
+    
+    // Extract values from redux store
     const userId = useSelector(state => state.auth.userId)
+    const token = useSelector(state => state.auth.token)
+
     const placeID = useParams().placeId
 
     const [inputHandler, formState, setFormData] = useForm({
@@ -66,7 +70,10 @@ export default function UpdatePlace() {
                               title: formState.inputs.title.value,
                               description: formState.inputs.description.value
                             }),
-                            { 'Content-Type': 'application/json' }
+                            { 
+                              'Content-Type': 'application/json',
+                              'Authorization': 'Bearer '+token 
+                            }
                           )
           navigate(`/${userId}/places`, { replace: false } )                
         } catch(error) {}
