@@ -14,7 +14,11 @@ import './PlaceForm.css'
 export default function NewPlace() {
     const backendURL = import.meta.env.VITE_BACKEND_URL
     const navigate = useNavigate()
+
+    // Extract values from redux store
     const userId = useSelector(state => state.auth.userId)
+    const token = useSelector(state => state.auth.token)
+    
     const { isLoading, error, sendRequest, clearError } = useHttpClient()
     const [inputHandler, formState] = useForm({
                 title: {
@@ -35,7 +39,6 @@ export default function NewPlace() {
                 }
             }, false)
 
-
     const placeSubmitHandler = async event => {
         event.preventDefault()
         
@@ -50,7 +53,9 @@ export default function NewPlace() {
             await sendRequest(
                 `${backendURL}places`,
                 'POST',
-                 formData)   
+                 formData,
+                 { 'Authorization': 'Bearer '+token }
+                )   
             navigate('/', { replace: false })
         } catch(error) {}
 
