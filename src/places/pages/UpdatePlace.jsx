@@ -83,7 +83,7 @@ export default function UpdatePlace() {
         }
     }
     
-    if(isLoading || isSubmitting){ return <div className='center'><LoadingSpinner /></div> }
+    if(isLoading || isSubmitting){ return <div className='center'><LoadingSpinner asOverlay /></div> }
 
     if(!loadedPlace && !error) {
       return <div className='center'><Card><h2>Could not find place!</h2></Card></div>

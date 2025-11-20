@@ -33,7 +33,7 @@ export default function UserPlaces() {
 
     return <>
       <ErrorModal onClear={clearError} error={error}/>
-      {isLoading && <div className="center"><LoadingSpinner /></div>}
+      {isLoading && <div className="center"><LoadingSpinner asOverlay /></div>}
       {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} onDeletePlace={placeDeleteHandler}/>}
     </>
 }
