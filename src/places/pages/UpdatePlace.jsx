@@ -16,6 +16,7 @@ export default function UpdatePlace() {
     const backendURL = import.meta.env.VITE_BACKEND_URL
     const [loadedPlace, setLoadedPlace] = useState()
     const {isLoading, error, sendRequest, clearError} = useHttpClient()
+    const [isSubmitting, setIsSubmitting] = useState(false) // fix - form becomes visible briefly
     const navigate = useNavigate()
     
     // Extract values from redux store
@@ -62,6 +63,7 @@ export default function UpdatePlace() {
 
     const placeUpdateSubmitHandler = async event => {
         event.preventDefault()
+        setIsSubmitting(true) // fix - form becomes visible briefly
 
         try{
           await sendRequest(`${backendURL}places/${placeID}`, 
@@ -76,10 +78,12 @@ export default function UpdatePlace() {
                             }
                           )
           navigate(`/${userId}/places`, { replace: false } )                
-        } catch(error) {}
+        } catch(error) {
+          setIsSubmitting(true) // fix - form becomes visible briefly
+        }
     }
     
-    if(isLoading){ return <div className='center'><LoadingSpinner /></div> }
+    if(isLoading || isSubmitting){ return <div className='center'><LoadingSpinner /></div> }
 
     if(!loadedPlace && !error) {
       return <div className='center'><Card><h2>Could not find place!</h2></Card></div>

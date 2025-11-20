@@ -62,7 +62,7 @@ export default function NewPlace() {
     }
 
     return <>
-    <ErrorModal error={error} onClear={clearError} />
+    <ErrorModal onClear={clearError} error={error} />
     <form className='place-form' onSubmit={placeSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
         <Input id='title'
