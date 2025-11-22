@@ -44,9 +44,8 @@ reusable UI components, and Redux state management.
 -   Optimized slice mutations.
 
 ### 🌐 Routing
-
--   Dynamic routes: /user/:userId/places
--   Lazy-loaded components.
+-   React Router V.7
+-   Dynamic routes: For Instance - /user/:userId/places
 
 ## 🛠️ Technical Highlights
 
@@ -108,6 +107,7 @@ PRs welcome.
 ## 📜 License
 
 MIT
+
 
 
 
