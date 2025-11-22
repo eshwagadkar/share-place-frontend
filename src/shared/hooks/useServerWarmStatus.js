@@ -13,7 +13,7 @@ export function useServerWarmStatus(backendUrl) {
       }, 3500)
 
       try {
-        await fetch(`${backendUrl}/health`)
+        await fetch(`${backendUrl}health`)
         clearTimeout(timeoutId)
         setIsCold(false)
       } catch (err) {
