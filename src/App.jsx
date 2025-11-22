@@ -2,6 +2,7 @@ import React, {Suspense} from 'react'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import LoadingSpinner from './shared/components/UI/LoadingSpinner'
+import { useServerWarmStatus } from './shared/hooks/useServerWarmStatus'
 
 const RootLayout = React.lazy(() => import('./shared/pages/Root'))
 const Users = React.lazy(() => import('./user/pages/Users'))
@@ -11,8 +12,20 @@ const UpdatePlace = React.lazy(() => import('./places/pages/UpdatePlace'))
 const Auth = React.lazy(() => import('./user/pages/Auth'))
 
 function App() {
-  
+  const backendURL = import.meta.env.VITE_BACKEND_URL
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+  const isServerCold = useServerWarmStatus(backendURL)
+
+  const fallbackUI = (
+    <div className='center' style={{ textAlign: 'center' }}>
+      <LoadingSpinner asOverlay />
+      {isServerCold && (
+        <p style={{ marginTop: '1rem', color: '#999' }}>
+          Warming up the server… this may take a few seconds
+        </p>
+      )}
+    </div>
+  )
 
   // Base child routes (always accessible)
   const childRoutes = [
@@ -42,7 +55,7 @@ function App() {
   ])
 
   return (
-    <Suspense fallback={<div className='center'><LoadingSpinner asOverlay /></div>}>
+    <Suspense fallback={fallbackUI}>
       <RouterProvider router={router} />
     </Suspense>
   )
