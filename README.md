@@ -1,4 +1,4 @@
-# Places App -- MERN + React + Redux Toolkit
+# Places App -- MERN + Redux Toolkit 
 
 A full-stack MERN application for creating, updating, and managing
 places with authentication, image uploads, JWT protection, custom hooks,
@@ -104,3 +104,4 @@ PRs welcome.
 ## 📜 License
 
 MIT
+
