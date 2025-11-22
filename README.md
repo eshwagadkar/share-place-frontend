@@ -1,6 +1,8 @@
 # Places App -- MERN + Redux Toolkit 
 
-**⚠️ Project Status: Still in Development --- Actively and Incrementally Updated**
+**⚠️ Project Status: Actively and Incrementally Updated** 
+
+🔗 Live URL : https://share-my-places-app-c02a1.web.app/auth 
 
 A full-stack MERN application for creating, updating, and managing
 places with authentication, image uploads, JWT protection, custom hooks,
@@ -106,5 +108,6 @@ PRs welcome.
 ## 📜 License
 
 MIT
+
 
 
