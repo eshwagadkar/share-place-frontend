@@ -1,5 +1,7 @@
 # Places App -- MERN + Redux Toolkit 
 
+**⚠️ Project Status: Still in Development --- Actively and Incrementally Updated**
+
 A full-stack MERN application for creating, updating, and managing
 places with authentication, image uploads, JWT protection, custom hooks,
 reusable UI components, and Redux state management.
@@ -104,4 +106,5 @@ PRs welcome.
 ## 📜 License
 
 MIT
+
 
